@@ -24,3 +24,4 @@ def find_top_20():
 
 #  make a list of the words, and then list(zip(~words~, range(20)))
 #    sorted(line_lc, key=lambda w[0])      #137, 230
+#

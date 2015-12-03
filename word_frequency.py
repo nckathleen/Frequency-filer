@@ -3,15 +3,17 @@ import re
 
 def find_top_20(count_dict):
     # Sort results from most frequent to least.
-    sorted_data = sorted(count_dict, key=lambda w: w[1])
-    top_20 = (list(zip(sorted_data, count_dict[1])))
-    print(top_20)
+    sorted_data = sorted(count_dict.items(), key=lambda w: w[1], reverse=True)
+    return sorted_data[:20]
 
 
-def word_frequency(split_text):
+def word_frequency(text):     # (split_text):
     # Compare and count words
+    # for line in text:
+    line_lc = re.sub(r'[^A-Za-z0-9\s]', "", text).lower()  # Strip lines
+    split_text = line_lc.split()    # Split the text on blank spaces
     count_dict = {}
-    for word in split_text:
+    for word in split_text:     # count occurances of each word
         if word in count_dict:
             count_dict[word] = count_dict[word] + 1
         else:
@@ -20,21 +22,13 @@ def word_frequency(split_text):
 
 
 def main():
-    print
-    #  Open .txt file and prepare contents for processing
-    split_text = ''
-    print("split_text = ".format(split_text))
-    line_lc = ''
-    with open("sample.txt", newline='') as material:  # Import file in lines
-        for line in material:
-            line_lc = re.sub(r'[^A-Za-z0-9\s]', "", (line.lower()))  # Strip lines
-            split_text.append(line_lc.split())
-            print("Another line!")
-    word_frequency(split_text)
-    find_top_20(count_dict)
+    # Open .txt file and call functions to process text
+    with open("sample.txt", newline='') as f:  # Import file in lines
+        word_frequency(f)
+        find_top_20()
+        for word in find_top_20(count_dict):
+            print(word[0], word[1])
 
 
 if __name__ == '__main__':
     main()
-#  make a list of the words, and then list(zip(~words~, range(20)))
-#    sorted(line_lc, key=lambda w[0])      #137, 230

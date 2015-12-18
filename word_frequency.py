@@ -10,6 +10,7 @@ def find_top_20(count_dict):
 def word_frequency(text):     # (split_text):
     # Compare and count words
     # for line in text:
+    # print(text)
     line_lc = re.sub(r'[^A-Za-z0-9\s]', "", text).lower()  # Strip lines
     split_text = line_lc.split()    # Split the text on blank spaces
     count_dict = {}
@@ -23,10 +24,10 @@ def word_frequency(text):     # (split_text):
 
 def main():
     # Open .txt file and call functions to process text
-    with open("sample.txt", newline='') as f:  # Import file in lines
+    with open("sample.txt", newline='') as f:
         word_frequency(f)
         find_top_20()
-        for word in find_top_20(count_dict):
+        for word in find_top_20():
             print(word[0], word[1])
 
 
